@@ -1,4 +1,4 @@
-import News from '../../models/news.js';
+import News from '../models/news.js';
 
 async function clearLastDayNews() {
     const currentDateTime = new Date();
