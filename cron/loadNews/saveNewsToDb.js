@@ -9,7 +9,8 @@ async function saveNewsToDb() {
         newsEntries.push({
             title: article.title,
             image: article.urlToImage,
-            summary: article.description
+            summary: article.description,
+            sourceURL: article.url,
         });
     }
 
