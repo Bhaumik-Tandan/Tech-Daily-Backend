@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
     <script>
         function openStore() {
             if (navigator.userAgent.match(/(iPod|iPhone|iPad|Mac)/)) {
-                window.location = "https://apps.apple.com/in/app/vitian/id1491471781";
+                window.location = "https://play.google.com/store/apps/details?id=com.jsdaily.jsdaily&hl=en-US&ah=pUFEkCCI9Dr8eL4t4DtpkcQRYBo";
             } else(navigator.userAgent.match(/Android/)) {
                 window.location = "https://play.google.com/store/apps/details?id=edu.vit.vtop.androidapp&pli=1";
             }
