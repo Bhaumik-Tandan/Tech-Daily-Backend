@@ -12,9 +12,9 @@ router.get('/', (req, res) => {
     <h1>Please Wait...</h1>
     <script>
         function openStore() {
-            if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+            if (navigator.userAgent.match(/(iPod|iPhone|iPad|Mac)/)) {
                 window.location = "https://apps.apple.com/in/app/vitian/id1491471781";
-            } else if (navigator.userAgent.match(/Android/)) {
+            } else(navigator.userAgent.match(/Android/)) {
                 window.location = "https://play.google.com/store/apps/details?id=edu.vit.vtop.androidapp&pli=1";
             }
         }
