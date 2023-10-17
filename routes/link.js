@@ -18,11 +18,7 @@ router.get('/', (req, res) => {
                 window.location = "https://play.google.com/store/apps/details?id=edu.vit.vtop.androidapp&pli=1";
             }
         }
-        console.log("window.location.search", window.location.search);
-        console.log(
-            "window.location.search.replace('?redirect/', '')",
-            window.location.search.replace("?redirect/", "")
-        );
+        
         window.location.replace(
             \`tech-daily://${query.redirect}\`
         );
