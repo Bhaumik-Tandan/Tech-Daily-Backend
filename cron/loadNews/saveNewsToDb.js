@@ -2,7 +2,7 @@ import News from '../../models/news.js';
 import getNews from './getNews.js';
 
 async function saveNewsToDb() {
-    console.log(Date(),triggered);
+    console.log(Date(),"triggered");
     const news = await getNews();
     const newsEntries = [];
 
