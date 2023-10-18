@@ -13,9 +13,9 @@ router.get('/', (req, res) => {
     <script>
         function openStore() {
             if (navigator.userAgent.match(/(iPod|iPhone|iPad|Mac)/)) {
-                window.location = "https://play.google.com/store/apps/details?id=com.jsdaily.jsdaily&hl=en-US&ah=pUFEkCCI9Dr8eL4t4DtpkcQRYBo";
+                window.location = "https://play.google.com/store/apps/details?id=com.jsdaily.jsdaily&pli=1";
             } else {
-                window.location = "https://play.google.com/store/apps/details?id=edu.vit.vtop.androidapp&pli=1";
+                window.location = "https://play.google.com/store/apps/details?id=com.jsdaily.jsdaily&pli=1";
             }
         }
         
