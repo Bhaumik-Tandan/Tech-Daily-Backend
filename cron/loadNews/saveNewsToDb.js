@@ -1,5 +1,6 @@
 import News from '../../models/news.js';
 import getNews from './getNews.js';
+import { v4 as uuidv4 } from 'uuid';
 
 async function saveNewsToDb() {
     console.log(Date(),"triggered");
@@ -12,11 +13,12 @@ async function saveNewsToDb() {
             image: article.urlToImage,
             summary: article.description,
             sourceURL: article.url,
+            _id: uuidv4(),
         });
     }
 
     if (newsEntries.length > 0) {
-        await News.insertMany(newsEntries);
+        await News.insertMany(newsEntries,{ordered: false});
     }
 }
 
