@@ -15,9 +15,10 @@ router.route('/').get(async (req, res) => {
 
     // Query the database to get the sorted and paginated news
     const news = await News.find()
-      .sort({ createdAt: -1 })  // Sort by createdAt date in descending order (newest first)
-      .skip(skip)
-      .limit(perPage);
+  .sort({ createdAt: -1, _id: 1 })
+  .skip(skip)
+  .limit(perPage);
+
 
     res.json(news);
   } catch (err) {
