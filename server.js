@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose, { get } from 'mongoose';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import NewsRouter from './routes/news.js';
 import cronInit from './cron/index.js';
