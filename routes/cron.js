@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import saveNewsToDB from '../cron/loadNews/saveNewsToDb';
-import clearLastDayNews from '../cron/loadNews/clearLastDayNews';
+import saveNewsToDB from '../cron/loadNews/saveNewsToDb.js';
+import clearLastDayNews from '../cron/clearLastDayNews.js';
 
 const router = Router();
 
