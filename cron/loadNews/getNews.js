@@ -37,7 +37,8 @@ function structureNews(news) {
     summary: summarizeText(article.body,5),
     sourceURL: article.url,
     publishedAt: Date(article.dateTimePub),
-    body: article.body
+    body: article.body,
+    relevance: article.relevance
    }
   });
 }
