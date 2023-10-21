@@ -21,6 +21,7 @@ async function saveNewsToDb() {
             const inserted = await News.insertMany(newsEntries, { ordered: false });
             console.log(Date(), `${inserted.length} news inserted`);
         }
+        return newsEntries.length;
     } catch (error) {
         console.error(Date(), 'An error occurred:', error);
     }

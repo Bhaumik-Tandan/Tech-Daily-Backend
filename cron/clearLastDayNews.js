@@ -5,7 +5,8 @@ async function clearLastDayNews() {
     const currentDateTime = new Date();
     currentDateTime.setHours(currentDateTime.getHours() - 24);
     const iso8601Time = currentDateTime.toISOString();
-    await News.deleteMany({ createdAt: { $lte: iso8601Time } });
+    const deleted=await News.deleteMany({ createdAt: { $lte: iso8601Time } });
+    return deleted.deletedCount;
 }
 
 export default clearLastDayNews;

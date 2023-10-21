@@ -8,19 +8,19 @@ const router = Router();
 router.get('/loadNews', async(req, res) => {
     const cronJobKey = req.header('CRON_JOB_KEY');
     if (cronJobKey !== process.env.CRON_JOB_KEY) {
-        res.send('News loaded');
+        res.send('News loaded 0');
     }
-    await saveNewsToDB();
-    res.send('News loaded');
+    const numberOfNews=await saveNewsToDB();
+    res.send('News loaded'+numberOfNews);
 });
 
 router.get('/clearLastDayNews', async(req, res) => {
     const cronJobKey = req.header('CRON_JOB_KEY');
     if (cronJobKey !== process.env.CRON_JOB_KEY) {
-        res.send('News cleared');
+        res.send('News cleared 0');
     }
-    await clearLastDayNews();
-    res.send('News cleared');
+    const deleted=await clearLastDayNews();
+    res.send('News cleared'+deleted);
 });
 
 
