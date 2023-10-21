@@ -14,11 +14,11 @@ const iso8601Time = currentDateTime.toISOString().slice(0, 19);
 
 async function getLastNewsTime() {
     try {
-        const latestNews = await News.findOne().sort({ createdAt: -1 });
+        const latestNews = await News.findOne().sort({ publishedAt: -1 });
 
         if (latestNews) {
             // Format the createdAt timestamp in ISO 8601 format
-            const iso8601Time = latestNews.createdAt.toISOString();
+            const iso8601Time = latestNews.publishedAt.toISOString();
 
             return iso8601Time;
         } else {

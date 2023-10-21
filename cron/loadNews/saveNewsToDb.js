@@ -12,7 +12,8 @@ async function saveNewsToDb() {
                 title: article.title,
                 image: article.urlToImage,
                 summary: article.description,
-                sourceURL: article.url
+                sourceURL: article.url,
+                publishedAt: Date(article.publishedAt),
             });
         }
 

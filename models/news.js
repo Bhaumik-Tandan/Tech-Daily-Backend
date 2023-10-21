@@ -7,6 +7,7 @@ const newsSchema = new Schema({
     image: { type: String,require: true },
     summary: { type: String, required: true },
     sourceURL: { type: String, required: true, unique: true },
+    publishedAt: { type: Date, required: true },
 }, {
   timestamps: true,
 });
