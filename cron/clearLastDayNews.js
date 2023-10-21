@@ -3,7 +3,7 @@ import News from '../models/news.js';
 async function clearLastDayNews() {
     console.log(Date(),"triggered");
     const currentDateTime = new Date();
-    currentDateTime.setHours(currentDateTime.getHours() - 24);
+    currentDateTime.setHours(currentDateTime.getHours() - 2);
     const iso8601Time = currentDateTime.toISOString();
     const deleted=await News.deleteMany({ createdAt: { $lte: iso8601Time } });
     return deleted.deletedCount;

@@ -25,7 +25,6 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 });
 
-
 app.use('/news', NewsRouter);
 app.use('/link', LinkRouter);
 app.use('/.well-known', DeepLinkRouter);

@@ -1,25 +1,67 @@
-import getApiUrl from "./getApiUrl.js";
 import axios from "axios";
+import getLastNewsTime from "./getLastNewsTime.js";
+import summarizeText from "./summarizeText.js";
 
+const apiUrl="https://www.newsapi.ai/api/v1/article/getArticlesForTopicPage";
 
-async function getNews(page=1) {
-  const apiUrl = await getApiUrl();
-  const url = `${apiUrl}&page=${page}`;
-
-  const res=await axios.get(url);
-
-  const data=res.data;
-
-  const articles=data.articles;
-
-  if(data.totalResults>page*100)
-  {
-    const nextPageArticles=await getNews(page+1);
-    return [...articles,...nextPageArticles];
+const getNewsFromApi = async (pageNumber) => {
+  const url=`${apiUrl}?articlesPage=${pageNumber}`;
+  const lastTime=await getLastNewsTime();
+  const body={
+    "uri": "d6e5a64f-196c-4776-8342-527b05a0e458",
+    "dataType": [
+        "news",
+        "blog"
+    ],
+    "resultType": "articles",
+    "articlesSortBy": "date",
+    "includeArticleImage": true,
+    "includeConceptLabel": false,
+    "includeSourceTitle": false,
+    "apiKey": process.env.NEWS_API_KEY,
+    "onlyAfterTm":lastTime
   }
 
-    return articles;
+  const res=await axios.post(url,body);
 
+  const data=res.data.articles;
+
+  return data;
+}
+
+function structureNews(news) {
+  return news.map((article) => {
+   return{ 
+    title: article.title,
+    image: article.image,
+    summary: summarizeText(article.body,3),
+    sourceURL: article.url,
+    publishedAt: Date(article.dateTimePub),
+    body: article.body
+   }
+  });
+}
+
+async function getNews() {
+  const allNews = []; 
+  let currentNewsPage = 1,pages; 
+
+  do {
+    const response = await getNewsFromApi(currentNewsPage);
+    const {results} = response;
+    pages=response.pages;
+
+    if (results && results.length > 0) {
+      allNews.push(...results); 
+      currentNewsPage++; 
+    } else {
+      break;
+    }
+  } while (currentNewsPage <= pages);
+
+  const structuredNews = structureNews(allNews);
+
+  return structuredNews;
 }
 
 export default getNews;
