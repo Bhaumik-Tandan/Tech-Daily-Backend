@@ -29,7 +29,7 @@ app.use('/news', NewsRouter);
 app.use('/link', LinkRouter);
 app.use('/.well-known', DeepLinkRouter);
 app.use('/cron', CronRouter);
-console.log(process.env.NEWS_API_KEY);
+
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
