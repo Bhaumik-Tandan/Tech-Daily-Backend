@@ -34,7 +34,7 @@ function structureNews(news) {
    return{ 
     title: article.title,
     image: article.image,
-    summary: summarizeText(article.body,3),
+    summary: summarizeText(article.body,5),
     sourceURL: article.url,
     publishedAt: Date(article.dateTimePub),
     body: article.body
