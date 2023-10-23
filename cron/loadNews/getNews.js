@@ -17,7 +17,7 @@ const getNewsFromApi = async (pageNumber) => {
     "articlesSortBy": "date",
     "includeArticleImage": true,
     "includeConceptLabel": false,
-    "includeSourceTitle": false,
+    "includeSourceTitle": true,
     "apiKey": process.env.NEWS_API_KEY,
     "onlyAfterTm":lastTime
   }
