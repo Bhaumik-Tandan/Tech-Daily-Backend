@@ -37,7 +37,8 @@ async function structureNews(news) {
       summary: await summarizeNews(article.title, article.body),
       sourceURL: article.url,
       publishedAt: new Date(article.dateTimePub), // Use 'new Date' to create a Date object
-      relevance: article.relevance
+      relevance: article.relevance,
+      source: article.source.title
     };
   }));
 
