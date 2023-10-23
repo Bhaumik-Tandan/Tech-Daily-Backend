@@ -9,6 +9,7 @@ const newsSchema = new Schema({
     sourceURL: { type: String, required: true, unique: true },
     publishedAt: { type: Date, required: true },
     relevance: { type: Number, required: true },
+    source: { type: String, required: true },
 }, {
   timestamps: true,
 });

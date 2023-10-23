@@ -17,7 +17,7 @@ router.route('/').get(async (req, res) => {
   .sort({ relevance:-1,publishedAt: -1, _id: 1 })
   .skip(skip)
   .limit(perPage)
-  .select('title image summary sourceURL');
+  .select('title image summary sourceURL source');
 
 
     res.json(news);
