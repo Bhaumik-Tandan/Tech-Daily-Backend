@@ -1,6 +1,6 @@
 import axios from "axios";
 import getLastNewsTime from "./getLastNewsTime.js";
-import summarizeText from "./summarizeText.js";
+import summarizeNews from "./summarizeNews.js";
 
 const apiUrl="https://www.newsapi.ai/api/v1/article/getArticlesForTopicPage";
 
@@ -29,12 +29,12 @@ const getNewsFromApi = async (pageNumber) => {
   return data;
 }
 
-function structureNews(news) {
-  return news.map((article) => {
+async function structureNews(news) {
+  return await news.map(async (article) => {
    return{ 
     title: article.title,
     image: article.image,
-    summary: summarizeText(article.body,3),
+    summary: await summarizeNews(article.title,article.body),
     sourceURL: article.url,
     publishedAt: Date(article.dateTimePub),
     body: article.body,
@@ -60,7 +60,7 @@ async function getNews() {
     }
   } while (currentNewsPage <= pages);
 
-  const structuredNews = structureNews(allNews);
+  const structuredNews = await structureNews(allNews);
 
   return structuredNews;
 }
