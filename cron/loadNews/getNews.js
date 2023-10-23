@@ -30,18 +30,20 @@ const getNewsFromApi = async (pageNumber) => {
 }
 
 async function structureNews(news) {
-  return await news.map(async (article) => {
-   return{ 
-    title: article.title,
-    image: article.image,
-    summary: await summarizeNews(article.title,article.body),
-    sourceURL: article.url,
-    publishedAt: Date(article.dateTimePub),
-    body: article.body,
-    relevance: article.relevance
-   }
-  });
+  const structuredNews = await Promise.all(news.map(async (article) => {
+    return {
+      title: article.title,
+      image: article.image,
+      summary: await summarizeNews(article.title, article.body),
+      sourceURL: article.url,
+      publishedAt: new Date(article.dateTimePub), // Use 'new Date' to create a Date object
+      relevance: article.relevance
+    };
+  }));
+
+  return structuredNews;
 }
+
 
 async function getNews() {
   const allNews = []; 
