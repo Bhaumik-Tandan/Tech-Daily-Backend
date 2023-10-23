@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const newsSchema = new Schema({
     title: { type: String, required: true, unique: true },
-    image: { type: String,require: true },
+    image: { type: String,required: true },
     summary: { type: String, required: true },
     sourceURL: { type: String, required: true, unique: true },
     publishedAt: { type: Date, required: true },
