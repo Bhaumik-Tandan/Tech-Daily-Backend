@@ -4,11 +4,11 @@ import summarizeNews from "./summarizeNews.js";
 
 const apiUrl="https://www.newsapi.ai/api/v1/article/getArticlesForTopicPage";
 
-const getNewsFromApi = async (pageNumber) => {
+const getNewsFromApi = async (pageNumber,category) => {
   const url=`${apiUrl}?articlesPage=${pageNumber}`;
   const lastTime=await getLastNewsTime();
   const body={
-    "uri": "d6e5a64f-196c-4776-8342-527b05a0e458",
+    "uri":category=='tech'? "d6e5a64f-196c-4776-8342-527b05a0e458":'fb73a4b5-6392-4ea6-a93a-fadffded78c8',
     "dataType": [
         "news",
         "blog"
@@ -25,7 +25,9 @@ const getNewsFromApi = async (pageNumber) => {
   const res=await axios.post(url,body);
 
   const data=res.data.articles;
-
+  data.map((article)=>{
+    article.category=category;
+  });
   return data;
 }
 
@@ -38,7 +40,8 @@ async function structureNews(news) {
       sourceURL: article.url,
       publishedAt: new Date(article.dateTimePub), // Use 'new Date' to create a Date object
       relevance: article.relevance,
-      source: article.source.title
+      source: article.source.title,
+      category: article.category,
     };
   }));
 
@@ -46,12 +49,12 @@ async function structureNews(news) {
 }
 
 
-async function getNews() {
+async function getNews(category='tech') {
   const allNews = []; 
   let currentNewsPage = 1,pages; 
 
   do {
-    const response = await getNewsFromApi(currentNewsPage);
+    const response = await getNewsFromApi(currentNewsPage,category);
     const {results} = response;
     pages=response.pages;
 

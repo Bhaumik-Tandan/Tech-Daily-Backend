@@ -10,6 +10,10 @@ const newsSchema = new Schema({
     publishedAt: { type: Date, required: true },
     relevance: { type: Number, required: true },
     source: { type: String, required: true },
+    category: 
+    { type: String, required: true,
+    enum: ['business', 'tech']  
+     },
 }, {
   timestamps: true,
 });

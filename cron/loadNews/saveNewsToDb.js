@@ -4,7 +4,7 @@ import getNews from './getNews.js';
 async function saveNewsToDb() {
     console.log(Date(), "triggered");
     try {
-        const newsEntries  = await getNews();
+        const newsEntries = (await Promise.all([getNews('business'), getNews('tech')])).flat();
 
         if (newsEntries.length > 0) {
             const inserted = await News.insertMany(newsEntries, { ordered: false });
