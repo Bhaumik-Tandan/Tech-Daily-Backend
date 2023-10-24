@@ -5,6 +5,7 @@ const router = Router();
 
 // Get all news articles with pagination
 router.route('/').get(async (req, res) => {
+  const category = (req.query.category)?req.query.category:'tech';
   try {
     // Pagination parameters
     const page = parseInt(req.query.page) || 1;  // Current page (default to 1)
@@ -13,7 +14,7 @@ router.route('/').get(async (req, res) => {
     // Calculate the skip value to start from the right index
     const skip = (page - 1) * perPage;
 
-    const news = await News.find()
+    const news = await News.find({category})
   .sort({ relevance:-1,publishedAt: -1, _id: 1 })
   .skip(skip)
   .limit(perPage)
