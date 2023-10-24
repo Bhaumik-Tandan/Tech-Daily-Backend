@@ -25,9 +25,7 @@ const getNewsFromApi = async (pageNumber,category) => {
   const res=await axios.post(url,body);
 
   const data=res.data.articles;
-  data.map((article)=>{
-    article.category=category;
-  });
+
   return data;
 }
 
@@ -65,6 +63,10 @@ async function getNews(category='tech') {
       break;
     }
   } while (currentNewsPage <= pages);
+
+  allNews.map((article) => {
+    article.category = category;
+  });
 
   const structuredNews = await structureNews(allNews);
 
