@@ -12,9 +12,9 @@ const iso8601Time = currentDateTime.toISOString().slice(0, 19);
  return iso8601Time;
 }
 
-async function getLastNewsTime() {
+async function getLastNewsTime(category) {
     try {
-        const latestNews = await News.findOne().sort({ publishedAt: -1 });
+        const latestNews = await News.findOne({category}).sort({ publishedAt: -1 });
 
         if (latestNews) {
             // Format the createdAt timestamp in ISO 8601 format

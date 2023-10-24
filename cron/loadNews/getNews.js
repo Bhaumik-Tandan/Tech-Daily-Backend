@@ -6,7 +6,7 @@ const apiUrl="https://www.newsapi.ai/api/v1/article/getArticlesForTopicPage";
 
 const getNewsFromApi = async (pageNumber,category) => {
   const url=`${apiUrl}?articlesPage=${pageNumber}`;
-  const lastTime=await getLastNewsTime();
+  const lastTime=await getLastNewsTime(category);
   const body={
     "uri":category=='tech'? "d6e5a64f-196c-4776-8342-527b05a0e458":'fb73a4b5-6392-4ea6-a93a-fadffded78c8',
     "dataType": [
