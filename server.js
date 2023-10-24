@@ -6,7 +6,6 @@ import NewsRouter from './routes/news.js';
 import LinkRouter from './routes/link.js';
 import DeepLinkRouter from './routes/.well-known.js';
 import CronRouter from './routes/cron.js';
-import saveNewsToDb from './cron/loadNews/saveNewsToDb.js';
 
 dotenv.config();
 
@@ -30,7 +29,6 @@ app.use('/news', NewsRouter);
 app.use('/link', LinkRouter);
 app.use('/.well-known', DeepLinkRouter);
 app.use('/cron', CronRouter);
-saveNewsToDb();
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
