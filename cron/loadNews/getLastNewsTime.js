@@ -4,7 +4,7 @@ function getLastHourTime() {
     const currentDateTime = new Date();
 
 // Subtract one hour (3600 seconds) from the current time
-currentDateTime.setHours(currentDateTime.getHours() - 3);
+currentDateTime.setHours(currentDateTime.getHours() - 12);
 
 // Format it as "2023-10-16T07:04:18"
 const iso8601Time = currentDateTime.toISOString().slice(0, 19);
