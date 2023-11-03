@@ -40,6 +40,7 @@ async function structureNews(news) {
       relevance: article.relevance,
       source: article.source.title,
       category: article.category,
+      body: article.body,
     };
   }));
 
