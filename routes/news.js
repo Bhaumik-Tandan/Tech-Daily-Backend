@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import News from '../models/news.js';
-
+import SummaryTool from "node-summary";
 const router = Router();
 
 // Get all news articles with pagination
@@ -26,6 +26,32 @@ router.route('/').get(async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+
+router.route('/summarize').post(async (req, res) => {
+  const { url,text } = req.body;
+  if(url)
+  SummaryTool.summarizeFromUrl(url, function(err, summary) {
+    if (err) {
+      console.log("err is ", err); // Corrected error logging
+      res.status(500).json({ error: 'Error summarizing content' }); // Optionally, send an error response to the client
+    } else {
+      res.status(200).json({ summary }); // Optionally, send the summary as a JSON response
+    }
+  });
+  else 
+  SummaryTool.summarize("",text, function(err, summary) {
+    if (err) {
+      console.log("err is ", err); // Corrected error logging
+      res.status(500).json({ error: 'Error summarizing content' }); // Optionally, send an error response to the client
+    } else {
+      res.status(200).json({ summary }); // Optionally, send the summary as a JSON response
+    }
+  });
+
+});
+
+
 
 // Get a single news article by ID
 router.route('/:id').get(async (req, res) => {
